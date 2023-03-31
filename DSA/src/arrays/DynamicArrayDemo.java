@@ -3,15 +3,35 @@ package arrays;
 import java.util.*;
 
 class DynamicArray{
-	final int initialCapacity = 16;
-	int arr[];
-	int size;
-	int capacity;
+	static final int initialCapacity = 16;
+	private int arr[];
+	private int size;
+	private int capacity;
 	
 	DynamicArray(){
 		size = 0;
 		arr = new int[initialCapacity];
 		capacity = initialCapacity; 
+	}
+	
+	public void add(int value){
+		if(size==capacity) {
+			expandArray();
+		}
+		arr[size] = value;
+		size++;
+	}
+	
+	public void expandArray() {
+		capacity = capacity * 2;
+		arr = java.util.Arrays.copyOf(arr, capacity);
+	}
+	
+	public void display() {
+		System.out.println("Elements in the array:");
+		for(int i=0; i<size; i++) {
+			System.out.print(arr[i] + " ");
+		}
 	}
 }
 
@@ -27,9 +47,9 @@ public class DynamicArrayDemo {
 		Scanner sc = new Scanner(System.in); 
 		
 		while(true) {
-		System.out.println("List menu:");
+		System.out.println("List menu:\n ");
 		System.out.println("1. Insert at End\n");
-		System.out.println("2. Display the list");
+		System.out.println("2. Display the list\n");
 		System.out.println("3. Insert at specified position\n");
 		System.out.println("4. Delete from specified position\n");
 		System.out.println("5. Exit\n");
@@ -52,11 +72,11 @@ public class DynamicArrayDemo {
 				}
 				System.out.print("Enter the data:");
 				value = sc.nextInt();
-				list.insertAtPos(pos,value);
+//				list.insertAtPos(pos,value);
 				break;
 		case 4: System.out.println("Enter the position to delete (pos starts at 0)");
 				pos = sc.nextInt();
-				list.deleteAtPos(pos);
+//				list.deleteAtPos(pos);
 				break;
 		case 5: System.exit(0);
 		
